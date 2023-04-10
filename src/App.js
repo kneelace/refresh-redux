@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import Cart from './components/Cart/Cart';
+import Layout from './components/Layout/Layout';
+import Products from './components/Shop/Products';
+import { useSelector } from 'react-redux';
+import Auth from './components/Auth/Auth'
 
 function App() {
+  const toggleCart = useSelector(state => state.uiCart.showCart);
+  const authToggle = useSelector(state => state.authentication.isAuthenticated)
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      {!authToggle && <Auth />}
+      {authToggle && <>
+        {toggleCart && <Cart />}
+        {!toggleCart && < Products />}
+      </>}
+
+    </Layout>
+
+
   );
 }
 
