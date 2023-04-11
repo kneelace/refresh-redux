@@ -6,7 +6,7 @@ import DUMMY_DATA from './data';
 const Products = (props) => {
 
   const data = DUMMY_DATA;
-  console.log(data[0])
+
   return (
     <section className={classes.products}>
       <h2>Buy your favorite products</h2>
